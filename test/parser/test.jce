@@ -1,0 +1,55 @@
+
+/**
+ * MagzineAsset服务器接口
+ *
+ * @author
+ */
+
+#include "/data/musicbiz/sppjce/magzine/MagzineReadServer/MagzineRead.jce"
+
+// 杂志
+module magzine
+{
+
+    // 注释
+    // 模块id
+    const unsigned int MagzineAssetModuleId = 205362462;
+    // 行注释
+    const string MagzineAssetProgramName = "magzine.Magzin\\"eAssetServer;\\"s"; // 行末注释
+
+enum MagzeinAssetCreateListType
+    {
+        // 注释1
+        eAssetTypeAll,  // 全部
+            eAssetTypeUnsubmit  // 草稿
+    };
+
+enum MagzeinAssetBaseType
+    {
+        eBaseTypeUnknown = 0,
+            eBaseTypeUnsubmit = 1,
+            eBaseTypeAverage = 2,
+            eBaseTypeElite = 3
+    };
+
+
+    struct FeedListAssetItem
+    {
+        1 require int type = 0;    // 类型
+        2 optional vector<long> id;
+        4 optional vector<FeedCell> v_cell;
+        5 optional map<string, FeedCell> map_cel;
+        6 optional string scheme = "";
+    };
+
+    struct FeedCell {
+    1 require int type;
+    2 optional map<int, map<int, string>> v_data;
+};
+
+    interface MagzineAsset
+    {
+        vector<long> add(int num1, int num2);
+        FeedCell get_fav_mgz(string title, out vector<FeedCell> celllist);
+    };
+};

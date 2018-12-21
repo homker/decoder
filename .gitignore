@@ -145,7 +145,7 @@ fabric.properties
 
 # Editor-based Rest Client
 .idea/httpRequests
-
+.idea
 .idea/dictionaries/jikey.xml
 .idea/encodings.xml
 .idea/inspectionProfiles/
@@ -154,14 +154,4 @@ fabric.properties
 .idea/modules.xml
 .idea/vcs.xml
 .idea/workspace.xml
-README.md
 dist/
-package.json
-src/cli/
-src/generator/
-src/helper/typeChecker/
-src/index.js
-src/parser/
-src/reader/
-test/parser/index.test.js
-test/parser/test.jce
