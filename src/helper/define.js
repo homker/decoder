@@ -4,6 +4,8 @@
  * @date 2018-11-17
  */
 
+import {arr2obj} from "./tools";
+
 /**
  *           void    ：只能在函数的返回值表示
  l           bool    ：布尔类型，映射到taf::Bool
@@ -24,8 +26,8 @@ export const MKEYTOKENS = "struct|interface|module".split('|'); //多行的内�
 export const LKEYTOKENS = "key|routekey|out|enum|const|#include".split('|'); //单行的内容
 export const TYPETOKENS = "void|bool|byte|short|int|long|float|double|string|unsigned byte|unsigned short|Unsigned int".split('|'); // 类型关键字，如果类型不在这个列表之列，要考虑include的内容 或者报错
 export const OPTIONSTOKEN = "require|optional".split("|"); // 标记是否是必须
-export const LINECOMMENTTOKENS = "\/\/"; // 单行注释
-export const MCOMMENTTOKEN = "\/*"; // 多行注释
+export const LINECOMMENTTOKENS = ["\/\/"]; // 单行注释
+export const MCOMMENTTOKEN = ["\/*"]; // 多行注释
 
 // 统一换行符
 export const WRAP = "\n"; // 换行
@@ -37,3 +39,5 @@ export const OPTION = 'option';
 export const LKEY = 'lineKey';
 export const MKEY = 'multiKey';
 export const TYPE = 'type';
+
+export const TOKEN = arr2obj()

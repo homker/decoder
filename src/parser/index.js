@@ -8,21 +8,14 @@ import {
     TYPE
 } from "../helper/define";
 import {
-    arr2obj,
-    filterEmpty,
-    getId,
-    trim
+    arr2obj, getObjByKey
 } from "../helper/tools";
 import {
     isString
 } from '../helper/typeChecker'
-import {
-    getTokenTable
-} from "./string2tokenTable";
 
 
-
-let tokenMap = null
+let tokenMap = null;
 
 /**
  * 获取token映射表
@@ -36,15 +29,10 @@ function getTOKENMap() {
         [LINE_COMMENT]: arr2obj([LINECOMMENTTOKENS]),
         [MULTI_COMMENT]: arr2obj([MCOMMENTTOKEN]),
         [OPTION]: arr2obj(OPTIONSTOKEN),
-        [TOP_KEY]: arr2obj(TOPKEYTOKEN),
-        [KEY]: arr2obj(KEYTOKENS),
         [TYPE]: arr2obj(TYPETOKENS),
-        [TOP]: arr2obj(TOPTOKENS)
-    }
+    };
     return tokenMap
 }
-
-
 
 
 /**
@@ -54,7 +42,7 @@ function getTOKENMap() {
 function parserJce(string) {
     if (isString(string)) {
         // 把回车换行统一,把所有的分号去掉
-        return lexClassifier(string.replace(/(?:[\r\n]\s*)+/g, WRAP).replace(new RegExp(';', 'g'), '')) 
+        return lexClassifier(string.replace(/(?:[\r\n]\s*)+/g, WRAP).replace(new RegExp(';', 'g'), ''))
     }
     throw new TypeError('输入内容不是字符串')
 }
@@ -79,26 +67,20 @@ function parserJce(string) {
  * }
  * ]
  *
- * 
  * 分类器的过程如下：
- * 
  * 先处理字符串，把它变成带有行号，列号的词法表格。
- * 
  * 过滤掉空行和空格
- * 
  * 根据符号表对词法表格的匹配，进行分组
- * 
  * 分组的内容的得到的是简单语法树，然后对语法树做进一步的分析处理，得到完整的语法树
- * 
  */
 function lexClassifier(jceString) {
 
     // 先构建校验用的对象
-    let tokens = getObjByKey(getTOKENMap(), [LINE_COMMENT, MULTI_COMMENT, TOP_KEY, TOP])
+    let tokens = getObjByKey(getTOKENMap(), [LINE_COMMENT, MULTI_COMMENT, TOP_KEY, TOP]);
 
 
-    let pos = 0
-    let length = jceString.length
+    let pos = 0;
+    let length = jceString.length;
 
     while (pos < length) {
         let line = getLine(jceString, pos)
@@ -142,15 +124,15 @@ function getLine(string, pos) {
 }
 
 
-function matchLineComment(token, line, ) {
+function matchLineComment(token, line,) {
 
 }
 
 /**
  * 语义分析，判断语义内容是否合法
- * 
- * @param {array} tokenTable 
+ *
+ * @param {array} tokenTable
  */
-function semanticAnalyzer(tokenTable){
+function semanticAnalyzer(tokenTable) {
 
 }

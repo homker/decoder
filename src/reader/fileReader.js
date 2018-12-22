@@ -6,7 +6,7 @@ import file from 'fs'
  * @param path jce的绝对路径
  * @returns {string}
  */
-function fileReader(path) {
+export function fileReader(path) {
     if (Path.isAbsolute(path)) {
         return getFileStringByPath(path)
     }
@@ -16,7 +16,7 @@ function fileReader(path) {
 
 function getFileStringByPath(path) {
     if (file.existsSync(path)) {
-        return file.readSync(path, 'utf-8')
+        return file.readFileSync(path, 'utf8')
     }
     throw new Error(`[file reader error] ${path} ,file is not exist`)
 }
